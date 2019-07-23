@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+acpi=$(acpi)
+charg=$(echo "$acpi" |grep -c 'Discharging' )
+# getcap="$(acpi -i |tail -1)"
+
+if [[ $charg -gt 0 ]]; then
+  perc=$(echo "$acpi" |grep --only "[0-9]*%" |sed "s/%//" )
+  remain=$(echo "$acpi" |grep --only "[0-9][0-9]:[0-9][0-9]:[0-9][0-9]" )
+  echo '${color red}'$remain'${execbar echo '$perc' }${color}'
+fi
