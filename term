@@ -1,1 +1,5 @@
-lxterminal
+if [[ $(cat /etc/issue | cut -d ' ' -f 1) = "Debian" ]]; then
+  xfce4-terminal
+else
+  lxterminal
+fi
